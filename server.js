@@ -4,7 +4,7 @@ import express from 'express';
 import cors from 'cors';
 
 // Necessary initializations
-const port = 1337;
+const port = process.env.PORT || 1337;
 const app = express();
 app.use(bodyParser.json());
 app.use(
