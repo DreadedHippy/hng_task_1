@@ -14,6 +14,7 @@ app.use(
 );
 app.use(cors());
 
+// Get route
 app.get("/", (req, res) => {
 	let {slack_name, track} = req.query;
 	let date = new Date();
@@ -30,6 +31,7 @@ app.get("/", (req, res) => {
 	})
 });
 
+// Listen on port
 app.listen(port, () => {
 		console.log(`Server listening on port ${port}`)
 })
