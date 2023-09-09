@@ -23,7 +23,7 @@ app.get("/api", (req, res) => {
 
 	let response = {
 		slack_name,
-		current_day: "Saturday",
+		current_day,
 		utc_time,
 		track,
 		github_file_url: "https://github.com/Dreadedhippy/hng_task_1/blob/main/server.js",
