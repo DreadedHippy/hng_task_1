@@ -21,8 +21,8 @@ app.get("/api", (req, res) => {
 	const now = new Date();
 	// now.setMinutes(now.getMinutes() + 2);
 	// now.setHours(now.getHours()); //
-	now.setMinutes(now.getMinutes() +1);
-	const utc_time = now.toISOString();
+	now.setMinutes(now.getMinutes() + 2);
+	const utc_time = now;
 	let current_day = now.toLocaleDateString('en-us', {weekday:'long'});
 
 	res.status(200).json({
