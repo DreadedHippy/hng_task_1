@@ -18,14 +18,13 @@ app.use(cors());
 // Get route
 app.get("/api", (req, res) => {
 	let {slack_name, track} = req.query
-	let now = new Date();
-	const utc_time = now.toISOString();
-	let current_day = now.toLocaleDateString('en-us', {weekday:'long'});
+	const utc_time = new Date().toISOString().slice(0, -5) + 'Z'
+	let current_day = new Date().toLocaleDateString('en-us', {weekday:'long'});
 
 	let response = {
 		slack_name,
-		current_day: "Sunday",
-		utc_time: "2023-09-10T00:12:40.565Z",
+		current_day: "Saturday",
+		utc_time,
 		track,
 		github_file_url: "https://github.com/Dreadedhippy/hng_task_1/blob/main/server.js",
 		github_repo_url: "https://github.com/Dreadedhippy/hng_task_1",
