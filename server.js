@@ -19,8 +19,7 @@ app.use(cors());
 app.get("/api", (req, res) => {
 	let {slack_name, track} = req.query
 	const now = new Date();
-	// now.setMinutes(now.getMinutes() + 2);
-	now.setHours(now.getHours() - 1); //
+	now.setHours(now.getHours() + 2); //
 	now.setMinutes(now.getMinutes() + 2);
 	let current_day = now.toLocaleDateString('en-us', {weekday:'long'});
 
