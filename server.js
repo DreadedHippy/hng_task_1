@@ -2,6 +2,7 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 import cors from 'cors';
+import moment from 'moment-timezone';
 
 // Necessary initializations
 const port = process.env.PORT || 8080;
@@ -18,9 +19,10 @@ app.use(cors());
 app.get("/api", (req, res) => {
 	let {slack_name, track} = req.query
 	const now = new Date();
-	const utc_time = new Date(now.getTime() + (now.getTimezoneOffset() * 60000) + (1 * 60 * 60 * 1000)) // The offset for the Azure server.
-	.toISOString()
-	.slice(0, -5) + 'Z';
+	// now.setMinutes(now.getMinutes() + 2);
+	// now.setHours(now.getHours()); //
+	now.setMinutes(now.getMinutes() +1);
+	const utc_time = now.toISOString();
 	let current_day = now.toLocaleDateString('en-us', {weekday:'long'});
 
 	res.status(200).json({
