@@ -20,15 +20,14 @@ app.get("/api", (req, res) => {
 	let {slack_name, track} = req.query
 	const now = new Date();
 	// now.setMinutes(now.getMinutes() + 2);
-	// now.setHours(now.getHours()); //
+	now.setHours(now.getHours() - 1); //
 	now.setMinutes(now.getMinutes() + 2);
-	const utc_time = now;
 	let current_day = now.toLocaleDateString('en-us', {weekday:'long'});
 
 	res.status(200).json({
 		slack_name,
 		current_day,
-		utc_time,
+		utc_time: now,
 		track,
 		github_file_url: "https://github.com/Dreadedhippy/hng_task_1/blob/main/server.js",
 		github_repo_url: "https://github.com/Dreadedhippy/hng_task_1",
