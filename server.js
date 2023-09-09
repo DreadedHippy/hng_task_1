@@ -18,20 +18,23 @@ app.use(cors());
 // Get route
 app.get("/api", (req, res) => {
 	let {slack_name, track} = req.query
-	const now = new Date();
-	now.setHours(now.getHours() + 2); //
-	now.setMinutes(now.getMinutes() + 2);
+	let now = new Date();
+	const utc_time = now.toISOString();
 	let current_day = now.toLocaleDateString('en-us', {weekday:'long'});
 
-	res.status(200).json({
+	let response = {
 		slack_name,
 		current_day,
-		utc_time: now,
+		utc_time,
 		track,
 		github_file_url: "https://github.com/Dreadedhippy/hng_task_1/blob/main/server.js",
 		github_repo_url: "https://github.com/Dreadedhippy/hng_task_1",
 		status_code: 200
-	})
+	}
+
+	console.log(response);
+
+	res.status(200).json(response)
 });
 
 app.get("*", (req, res) => {
