@@ -15,19 +15,28 @@ app.use(
 app.use(cors());
 
 // Get route
-app.get("/", (req, res) => {
-	let {slack_name, track} = req.query;
-	let date = new Date();
-	let current_day = date.toLocaleDateString('en-us', {weekday:'long'});
+app.get("/api", (req, res) => {
+	let {slack_name, track} = req.query
+	const now = new Date();
+	const utc_time = new Date(now.getTime() + (now.getTimezoneOffset() * 60000) + (1 * 60 * 60 * 1000)) // The offset for the Azure server.
+	.toISOString()
+	.slice(0, -5) + 'Z';
+	let current_day = now.toLocaleDateString('en-us', {weekday:'long'});
 
 	res.status(200).json({
 		slack_name,
 		current_day,
-		utc_time: date,
+		utc_time,
 		track,
 		github_file_url: "https://github.com/Dreadedhippy/hng_task_1/blob/main/server.js",
 		github_repo_url: "https://github.com/Dreadedhippy/hng_task_1",
 		status_code: 200
+	})
+});
+
+app.get("*", (req, res) => {
+	res.status(200).json({
+		message: "Hi, This is the default route :)"
 	})
 });
 
